@@ -18,23 +18,24 @@ typedef CwiseUnaryOp<internal::scalar_multiple_op<Scalar>, const Derived> Scalar
 typedef CwiseUnaryOp<internal::scalar_quotient1_op<Scalar>, const Derived> ScalarQuotient1ReturnType;
 /** \internal the return type of conjugate() */
 typedef typename internal::conditional<NumTraits<Scalar>::IsComplex,
-                    const CwiseUnaryOp<internal::scalar_conjugate_op<Scalar>, const Derived>,
-                    const Derived&
-                  >::type ConjugateReturnType;
+        const CwiseUnaryOp<internal::scalar_conjugate_op<Scalar>, const Derived>,
+        const Derived &
+>::type ConjugateReturnType;
 /** \internal the return type of real() const */
 typedef typename internal::conditional<NumTraits<Scalar>::IsComplex,
-                    const CwiseUnaryOp<internal::scalar_real_op<Scalar>, const Derived>,
-                    const Derived&
-                  >::type RealReturnType;
+        const CwiseUnaryOp<internal::scalar_real_op<Scalar>, const Derived>,
+        const Derived &
+>::type RealReturnType;
 /** \internal the return type of real() */
 typedef typename internal::conditional<NumTraits<Scalar>::IsComplex,
-                    CwiseUnaryView<internal::scalar_real_ref_op<Scalar>, Derived>,
-                    Derived&
-                  >::type NonConstRealReturnType;
+        CwiseUnaryView < internal::scalar_real_ref_op < Scalar>, Derived>,
+Derived&
+>
+::type NonConstRealReturnType;
 /** \internal the return type of imag() const */
 typedef CwiseUnaryOp<internal::scalar_imag_op<Scalar>, const Derived> ImagReturnType;
 /** \internal the return type of imag() */
-typedef CwiseUnaryView<internal::scalar_imag_ref_op<Scalar>, Derived> NonConstImagReturnType;
+typedef CwiseUnaryView <internal::scalar_imag_ref_op<Scalar>, Derived> NonConstImagReturnType;
 
 #endif // not EIGEN_PARSED_BY_DOXYGEN
 
@@ -46,9 +47,9 @@ operator-() const { return derived(); }
 
 /** \returns an expression of \c *this scaled by the scalar factor \a scalar */
 inline const ScalarMultipleReturnType
-operator*(const Scalar& scalar) const
-{
-  return CwiseUnaryOp<internal::scalar_multiple_op<Scalar>, const Derived>
+operator*(const Scalar &scalar) const {
+    return CwiseUnaryOp < internal::scalar_multiple_op < Scalar > ,
+    const Derived>
     (derived(), internal::scalar_multiple_op<Scalar>(scalar));
 }
 
@@ -58,27 +59,27 @@ const ScalarMultipleReturnType operator*(const RealScalar& scalar) const;
 
 /** \returns an expression of \c *this divided by the scalar value \a scalar */
 inline const CwiseUnaryOp<internal::scalar_quotient1_op<typename internal::traits<Derived>::Scalar>, const Derived>
-operator/(const Scalar& scalar) const
-{
-  return CwiseUnaryOp<internal::scalar_quotient1_op<Scalar>, const Derived>
+operator/(const Scalar &scalar) const {
+    return CwiseUnaryOp < internal::scalar_quotient1_op < Scalar > ,
+    const Derived>
     (derived(), internal::scalar_quotient1_op<Scalar>(scalar));
 }
 
 /** Overloaded for efficient real matrix times complex scalar value */
-inline const CwiseUnaryOp<internal::scalar_multiple2_op<Scalar,std::complex<Scalar> >, const Derived>
-operator*(const std::complex<Scalar>& scalar) const
-{
-  return CwiseUnaryOp<internal::scalar_multiple2_op<Scalar,std::complex<Scalar> >, const Derived>
-    (*static_cast<const Derived*>(this), internal::scalar_multiple2_op<Scalar,std::complex<Scalar> >(scalar));
+inline const CwiseUnaryOp <internal::scalar_multiple2_op<Scalar, std::complex < Scalar>>, const Derived>
+
+operator*(const std::complex <Scalar> &scalar) const {
+    return CwiseUnaryOp < internal::scalar_multiple2_op < Scalar, std::complex < Scalar > >,
+    const Derived>
+    (*static_cast<const Derived *>(this), internal::scalar_multiple2_op < Scalar, std::complex < Scalar > > (scalar));
 }
 
 inline friend const ScalarMultipleReturnType
-operator*(const Scalar& scalar, const StorageBaseType& matrix)
-{ return matrix*scalar; }
+operator*(const Scalar &scalar, const StorageBaseType &matrix) { return matrix * scalar; }
 
-inline friend const CwiseUnaryOp<internal::scalar_multiple2_op<Scalar,std::complex<Scalar> >, const Derived>
-operator*(const std::complex<Scalar>& scalar, const StorageBaseType& matrix)
-{ return matrix*scalar; }
+inline friend const CwiseUnaryOp <internal::scalar_multiple2_op<Scalar, std::complex < Scalar>>, const Derived>
+
+operator*(const std::complex <Scalar> &scalar, const StorageBaseType &matrix) { return matrix * scalar; }
 
 /** \returns an expression of *this with the \a Scalar type casted to
   * \a NewScalar.
@@ -88,19 +89,17 @@ operator*(const std::complex<Scalar>& scalar, const StorageBaseType& matrix)
   * \sa class CwiseUnaryOp
   */
 template<typename NewType>
-typename internal::cast_return_type<Derived,const CwiseUnaryOp<internal::scalar_cast_op<typename internal::traits<Derived>::Scalar, NewType>, const Derived> >::type
-cast() const
-{
-  return derived();
+typename internal::cast_return_type<Derived, const CwiseUnaryOp<internal::scalar_cast_op<typename internal::traits<Derived>::Scalar, NewType>, const Derived> >::type
+cast() const {
+    return derived();
 }
 
 /** \returns an expression of the complex conjugate of \c *this.
   *
   * \sa adjoint() */
 inline ConjugateReturnType
-conjugate() const
-{
-  return ConjugateReturnType(derived());
+conjugate() const {
+    return ConjugateReturnType(derived());
 }
 
 /** \returns a read-only expression of the real part of \c *this.
@@ -136,9 +135,8 @@ imag() const { return derived(); }
   */
 template<typename CustomUnaryOp>
 inline const CwiseUnaryOp<CustomUnaryOp, const Derived>
-unaryExpr(const CustomUnaryOp& func = CustomUnaryOp()) const
-{
-  return CwiseUnaryOp<CustomUnaryOp, const Derived>(derived(), func);
+unaryExpr(const CustomUnaryOp &func = CustomUnaryOp()) const {
+    return CwiseUnaryOp<CustomUnaryOp, const Derived>(derived(), func);
 }
 
 /** \returns an expression of a custom coefficient-wise unary operator \a func of *this
@@ -154,9 +152,8 @@ unaryExpr(const CustomUnaryOp& func = CustomUnaryOp()) const
   */
 template<typename CustomViewOp>
 inline const CwiseUnaryView<CustomViewOp, const Derived>
-unaryViewExpr(const CustomViewOp& func = CustomViewOp()) const
-{
-  return CwiseUnaryView<CustomViewOp, const Derived>(derived(), func);
+unaryViewExpr(const CustomViewOp &func = CustomViewOp()) const {
+    return CwiseUnaryView<CustomViewOp, const Derived>(derived(), func);
 }
 
 /** \returns a non const expression of the real part of \c *this.

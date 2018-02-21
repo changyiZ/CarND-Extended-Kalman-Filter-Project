@@ -7,10 +7,11 @@
   *
   * \sa abs2()
   */
-EIGEN_STRONG_INLINE const CwiseUnaryOp<internal::scalar_abs_op<Scalar>, const Derived>
-abs() const
-{
-  return derived();
+EIGEN_STRONG_INLINE const CwiseUnaryOp<internal::scalar_abs_op < Scalar>,
+const Derived>
+
+abs() const {
+    return derived();
 }
 
 /** \returns an expression of the coefficient-wise squared absolute value of \c *this
@@ -20,10 +21,11 @@ abs() const
   *
   * \sa abs(), square()
   */
-EIGEN_STRONG_INLINE const CwiseUnaryOp<internal::scalar_abs2_op<Scalar>, const Derived>
-abs2() const
-{
-  return derived();
+EIGEN_STRONG_INLINE const CwiseUnaryOp<internal::scalar_abs2_op < Scalar>,
+const Derived>
+
+abs2() const {
+    return derived();
 }
 
 /** \returns an expression of the coefficient-wise exponential of *this.
@@ -34,9 +36,8 @@ abs2() const
   * \sa pow(), log(), sin(), cos()
   */
 inline const CwiseUnaryOp<internal::scalar_exp_op<Scalar>, const Derived>
-exp() const
-{
-  return derived();
+exp() const {
+    return derived();
 }
 
 /** \returns an expression of the coefficient-wise logarithm of *this.
@@ -47,9 +48,8 @@ exp() const
   * \sa exp()
   */
 inline const CwiseUnaryOp<internal::scalar_log_op<Scalar>, const Derived>
-log() const
-{
-  return derived();
+log() const {
+    return derived();
 }
 
 /** \returns an expression of the coefficient-wise square root of *this.
@@ -60,9 +60,8 @@ log() const
   * \sa pow(), square()
   */
 inline const CwiseUnaryOp<internal::scalar_sqrt_op<Scalar>, const Derived>
-sqrt() const
-{
-  return derived();
+sqrt() const {
+    return derived();
 }
 
 /** \returns an expression of the coefficient-wise cosine of *this.
@@ -73,9 +72,8 @@ sqrt() const
   * \sa sin(), acos()
   */
 inline const CwiseUnaryOp<internal::scalar_cos_op<Scalar>, const Derived>
-cos() const
-{
-  return derived();
+cos() const {
+    return derived();
 }
 
 
@@ -87,9 +85,8 @@ cos() const
   * \sa cos(), asin()
   */
 inline const CwiseUnaryOp<internal::scalar_sin_op<Scalar>, const Derived>
-sin() const
-{
-  return derived();
+sin() const {
+    return derived();
 }
 
 /** \returns an expression of the coefficient-wise arc cosine of *this.
@@ -100,9 +97,8 @@ sin() const
   * \sa cos(), asin()
   */
 inline const CwiseUnaryOp<internal::scalar_acos_op<Scalar>, const Derived>
-acos() const
-{
-  return derived();
+acos() const {
+    return derived();
 }
 
 /** \returns an expression of the coefficient-wise arc sine of *this.
@@ -113,9 +109,8 @@ acos() const
   * \sa sin(), acos()
   */
 inline const CwiseUnaryOp<internal::scalar_asin_op<Scalar>, const Derived>
-asin() const
-{
-  return derived();
+asin() const {
+    return derived();
 }
 
 /** \returns an expression of the coefficient-wise tan of *this.
@@ -125,10 +120,9 @@ asin() const
   *
   * \sa cos(), sin()
   */
-inline const CwiseUnaryOp<internal::scalar_tan_op<Scalar>, Derived>
-tan() const
-{
-  return derived();
+inline const CwiseUnaryOp <internal::scalar_tan_op<Scalar>, Derived>
+tan() const {
+    return derived();
 }
 
 
@@ -140,10 +134,10 @@ tan() const
   * \sa exp(), log()
   */
 inline const CwiseUnaryOp<internal::scalar_pow_op<Scalar>, const Derived>
-pow(const Scalar& exponent) const
-{
-  return CwiseUnaryOp<internal::scalar_pow_op<Scalar>, const Derived>
-          (derived(), internal::scalar_pow_op<Scalar>(exponent));
+pow(const Scalar &exponent) const {
+    return CwiseUnaryOp<internal::scalar_pow_op < Scalar>,
+    const Derived>
+    (derived(), internal::scalar_pow_op<Scalar>(exponent));
 }
 
 
@@ -155,9 +149,8 @@ pow(const Scalar& exponent) const
   * \sa operator/(), operator*()
   */
 inline const CwiseUnaryOp<internal::scalar_inverse_op<Scalar>, const Derived>
-inverse() const
-{
-  return derived();
+inverse() const {
+    return derived();
 }
 
 /** \returns an expression of the coefficient-wise square of *this.
@@ -168,9 +161,8 @@ inverse() const
   * \sa operator/(), operator*(), abs2()
   */
 inline const CwiseUnaryOp<internal::scalar_square_op<Scalar>, const Derived>
-square() const
-{
-  return derived();
+square() const {
+    return derived();
 }
 
 /** \returns an expression of the coefficient-wise cube of *this.
@@ -181,7 +173,6 @@ square() const
   * \sa square(), pow()
   */
 inline const CwiseUnaryOp<internal::scalar_cube_op<Scalar>, const Derived>
-cube() const
-{
-  return derived();
+cube() const {
+    return derived();
 }

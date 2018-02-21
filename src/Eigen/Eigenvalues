@@ -36,6 +36,7 @@
 #include "src/Eigenvalues/RealQZ.h"
 #include "src/Eigenvalues/GeneralizedEigenSolver.h"
 #include "src/Eigenvalues/MatrixBaseEigenvalues.h"
+
 #ifdef EIGEN_USE_LAPACKE
 #include "src/Eigenvalues/RealSchur_MKL.h"
 #include "src/Eigenvalues/ComplexSchur_MKL.h"

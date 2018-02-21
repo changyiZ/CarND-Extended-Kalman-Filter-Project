@@ -36,11 +36,12 @@
 #include "Eigen/src/Core/util/MKL_support.h"
 #include <iostream>
 
-namespace Eigen { 
+namespace Eigen {
 
-namespace internal {
+    namespace internal {
 
-template<typename Scalar> struct mkl_llt;
+        template<typename Scalar>
+        struct mkl_llt;
 
 #define EIGEN_MKL_LLT(EIGTYPE, MKLTYPE, MKLPREFIX) \
 template<> struct mkl_llt<EIGTYPE> \
@@ -90,12 +91,15 @@ template<> struct llt_inplace<EIGTYPE, Upper> \
   } \
 };
 
-EIGEN_MKL_LLT(double, double, d)
-EIGEN_MKL_LLT(float, float, s)
-EIGEN_MKL_LLT(dcomplex, MKL_Complex16, z)
-EIGEN_MKL_LLT(scomplex, MKL_Complex8, c)
+        EIGEN_MKL_LLT(double, double, d)
 
-} // end namespace internal
+        EIGEN_MKL_LLT(float, float, s)
+
+        EIGEN_MKL_LLT(dcomplex, MKL_Complex16, z)
+
+        EIGEN_MKL_LLT(scomplex, MKL_Complex8, c)
+
+    } // end namespace internal
 
 } // end namespace Eigen
 

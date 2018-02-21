@@ -11,7 +11,7 @@
 #ifndef EIGEN_VECTORBLOCK_H
 #define EIGEN_VECTORBLOCK_H
 
-namespace Eigen { 
+namespace Eigen {
 
 /** \class VectorBlock
   * \ingroup Core_Module
@@ -44,48 +44,45 @@ namespace Eigen {
   * \sa class Block, DenseBase::segment(Index,Index,Index,Index), DenseBase::segment(Index,Index)
   */
 
-namespace internal {
-template<typename VectorType, int Size>
-struct traits<VectorBlock<VectorType, Size> >
-  : public traits<Block<VectorType,
-                     traits<VectorType>::Flags & RowMajorBit ? 1 : Size,
-                     traits<VectorType>::Flags & RowMajorBit ? Size : 1> >
-{
-};
+    namespace internal {
+        template<typename VectorType, int Size>
+        struct traits<VectorBlock < VectorType, Size> >
+        : public traits<Block < VectorType,
+                traits<VectorType>::Flags & RowMajorBit ? 1 : Size,
+                traits<VectorType>::Flags & RowMajorBit ? Size : 1> > {
+    };
 }
 
-template<typename VectorType, int Size> class VectorBlock
-  : public Block<VectorType,
-                     internal::traits<VectorType>::Flags & RowMajorBit ? 1 : Size,
-                     internal::traits<VectorType>::Flags & RowMajorBit ? Size : 1>
-{
+template<typename VectorType, int Size>
+class VectorBlock
+        : public Block<VectorType,
+                internal::traits<VectorType>::Flags & RowMajorBit ? 1 : Size,
+                internal::traits<VectorType>::Flags & RowMajorBit ? Size : 1> {
     typedef Block<VectorType,
-                     internal::traits<VectorType>::Flags & RowMajorBit ? 1 : Size,
-                     internal::traits<VectorType>::Flags & RowMajorBit ? Size : 1> Base;
+            internal::traits<VectorType>::Flags & RowMajorBit ? 1 : Size,
+            internal::traits<VectorType>::Flags & RowMajorBit ? Size : 1> Base;
     enum {
-      IsColVector = !(internal::traits<VectorType>::Flags & RowMajorBit)
+        IsColVector = !(internal::traits<VectorType>::Flags & RowMajorBit)
     };
-  public:
+public:
     EIGEN_DENSE_PUBLIC_INTERFACE(VectorBlock)
 
     using Base::operator=;
 
     /** Dynamic-size constructor
       */
-    inline VectorBlock(VectorType& vector, Index start, Index size)
-      : Base(vector,
-             IsColVector ? start : 0, IsColVector ? 0 : start,
-             IsColVector ? size  : 1, IsColVector ? 1 : size)
-    {
-      EIGEN_STATIC_ASSERT_VECTOR_ONLY(VectorBlock);
+    inline VectorBlock(VectorType &vector, Index start, Index size)
+            : Base(vector,
+                   IsColVector ? start : 0, IsColVector ? 0 : start,
+                   IsColVector ? size : 1, IsColVector ? 1 : size) {
+        EIGEN_STATIC_ASSERT_VECTOR_ONLY(VectorBlock);
     }
 
     /** Fixed-size constructor
       */
-    inline VectorBlock(VectorType& vector, Index start)
-      : Base(vector, IsColVector ? start : 0, IsColVector ? 0 : start)
-    {
-      EIGEN_STATIC_ASSERT_VECTOR_ONLY(VectorBlock);
+    inline VectorBlock(VectorType &vector, Index start)
+            : Base(vector, IsColVector ? start : 0, IsColVector ? 0 : start) {
+        EIGEN_STATIC_ASSERT_VECTOR_ONLY(VectorBlock);
     }
 };
 
